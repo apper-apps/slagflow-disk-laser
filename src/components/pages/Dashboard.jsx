@@ -34,21 +34,21 @@ const Dashboard = () => {
     );
   }
 
-  return (
-    <div className="p-6 space-y-6">
+return (
+    <div className="p-4 md:p-6 space-y-4">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 font-display">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900 font-display">
             {userRole} Dashboard
           </h1>
-          <p className="text-gray-600 mt-1">
+          <p className="text-gray-600 text-sm md:text-base">
             Welcome back! Here's what's happening at your plant today.
           </p>
         </div>
-        <div className="text-right">
-          <div className="text-sm text-gray-500">Today</div>
-          <div className="text-lg font-semibold text-gray-900">
+        <div className="text-left sm:text-right">
+          <div className="text-xs md:text-sm text-gray-500">Today</div>
+          <div className="text-base md:text-lg font-semibold text-gray-900">
             {new Date().toLocaleDateString('en-US', { 
               weekday: 'long', 
               year: 'numeric', 
