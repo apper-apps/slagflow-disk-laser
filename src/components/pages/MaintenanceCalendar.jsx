@@ -250,50 +250,71 @@ const getFilteredTasks = () => {
         const isCurrentMonth = isSameMonth(currentDay, monthStart);
         const isToday = isSameDay(currentDay, new Date());
         
-        days.push(
+days.push(
           <div
             key={day}
             className={cn(
-              'min-h-[120px] border border-gray-200 p-2 cursor-pointer transition-colors',
+              'min-h-[140px] border border-gray-200 p-3 cursor-pointer transition-all duration-200 hover:shadow-sm',
               isCurrentMonth ? 'bg-white hover:bg-gray-50' : 'bg-gray-50 text-gray-400',
-              isToday && 'bg-blue-50 border-blue-200'
+              isToday && 'bg-blue-50 border-blue-300 shadow-sm'
             )}
             onClick={() => handleDateClick(currentDay)}
           >
-            <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center justify-between mb-2">
               <span className={cn(
-                'text-sm font-medium',
-                isToday && 'text-blue-600'
+                'text-base font-semibold',
+                isToday ? 'text-blue-700' : 'text-gray-900',
+                !isCurrentMonth && 'text-gray-400'
               )}>
                 {format(currentDay, 'd')}
               </span>
               {dayTasks.length > 0 && (
-                <Badge variant="secondary" size="sm">
+                <Badge 
+                  variant="secondary" 
+                  size="sm"
+                  className="bg-primary/10 text-primary border-primary/20 font-medium"
+                >
                   {dayTasks.length}
                 </Badge>
               )}
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               {dayTasks.slice(0, 3).map(task => (
                 <div
                   key={task.Id}
                   className={cn(
-                    'text-xs p-1 rounded truncate cursor-pointer',
-                    task.priority === 'high' && 'bg-red-100 text-red-700',
-                    task.priority === 'medium' && 'bg-yellow-100 text-yellow-700',
-                    task.priority === 'low' && 'bg-green-100 text-green-700'
+                    'text-xs p-2 rounded-md cursor-pointer transition-all duration-150 hover:shadow-sm border',
+                    'flex items-start space-x-2 relative overflow-hidden',
+                    task.priority === 'high' && 'bg-red-50 text-red-800 border-red-200 hover:bg-red-100',
+                    task.priority === 'medium' && 'bg-yellow-50 text-yellow-800 border-yellow-200 hover:bg-yellow-100',
+                    task.priority === 'low' && 'bg-green-50 text-green-800 border-green-200 hover:bg-green-100'
                   )}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleTaskClick(task);
                   }}
+                  title={task.title}
                 >
-                  {task.title}
+                  <div className={cn(
+                    'w-2 h-2 rounded-full mt-1 flex-shrink-0',
+                    task.status === 'completed' && 'bg-green-500',
+                    task.status === 'in-progress' && 'bg-yellow-500',
+                    task.status === 'scheduled' && 'bg-blue-500',
+                    task.status === 'cancelled' && 'bg-gray-400'
+                  )} />
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-xs leading-tight line-clamp-2">
+                      {task.title}
+                    </div>
+                    <div className="text-xs opacity-75 mt-0.5">
+                      {task.scheduledTime}
+                    </div>
+                  </div>
                 </div>
               ))}
               {dayTasks.length > 3 && (
-                <div className="text-xs text-gray-500">
-                  +{dayTasks.length - 3} more
+                <div className="text-xs text-gray-600 bg-gray-100 rounded px-2 py-1 text-center font-medium">
+                  +{dayTasks.length - 3} more tasks
                 </div>
               )}
             </div>
