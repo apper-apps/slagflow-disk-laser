@@ -210,7 +210,7 @@ return (
 </Button>
                         {/* Notifications Dropdown */}
                         {showNotifications && <div
-                            className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-[9998]">
+                            className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-[9999]">
                             <div className="p-4 border-b border-gray-200">
                                 <div className="flex items-center justify-between">
                                     <h3 className="font-semibold text-gray-900">Notifications</h3>
@@ -264,8 +264,10 @@ return (
                     </div>
                 </div>
             </div>
-        </div>
+</div>
     </div>
+    {/* Notifications Backdrop */}
+    {showNotifications && <div className="fixed inset-0 bg-transparent z-[9998]" />}
     {/* Mobile Menu Overlay */}
     {isMenuOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" />}
     {/* Mobile Navigation Menu */}
