@@ -1,26 +1,56 @@
-import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import ApperIcon from '@/components/ApperIcon';
-import Button from '@/components/atoms/Button';
-import Badge from '@/components/atoms/Badge';
-import { cn } from '@/utils/cn';
+import React, { useEffect, useRef, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { cn } from "@/utils/cn";
+import ApperIcon from "@/components/ApperIcon";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
 
 const Header = () => {
   const [userRole, setUserRole] = useState('Manager');
   const [notifications, setNotifications] = useState(3);
+  const [showNotifications, setShowNotifications] = useState(false);
   const navigate = useNavigate();
+  const notificationsRef = useRef(null);
 
-const navigationItems = [
+  const navigationItems = [
     { path: '/', label: 'Dashboard', icon: 'LayoutDashboard' },
     { path: '/weighbridge', label: 'Weighbridge', icon: 'Scale' },
     { path: '/processing', label: 'Processing', icon: 'Cog' },
     { path: '/inventory', label: 'Inventory', icon: 'Package' },
     { path: '/reports', label: 'Reports', icon: 'FileText' },
-    { path: '/maintenance', label: 'Maintenance', icon: 'Calendar' },
-    { path: '/settings', label: 'Settings', icon: 'Settings' }
+    { path: '/maintenance', label: 'Maintenance', icon: 'Wrench' },
+    { path: '/settings', label: 'Settings', icon: 'Settings' },
   ];
 
   const roleOptions = ['Manager', 'Yard Staff', 'Maintenance'];
+
+  // Mock notification data
+  const mockNotifications = [
+    {
+      id: 1,
+      title: 'Equipment Maintenance Due',
+      message: 'Loader #3 requires scheduled maintenance',
+      time: '2 minutes ago',
+      type: 'warning',
+      read: false
+    },
+    {
+      id: 2,
+      title: 'Load Processing Complete',
+      message: 'Batch #2024-001 has been processed successfully',
+      time: '15 minutes ago',
+      type: 'success',
+      read: false
+    },
+    {
+      id: 3,
+      title: 'Inventory Alert',
+      message: 'Raw material stock is running low',
+      time: '1 hour ago',
+      type: 'error',
+      read: false
+    }
+  ];
 
   const handleRoleChange = (role) => {
     setUserRole(role);
@@ -28,6 +58,53 @@ const navigationItems = [
     navigate('/');
   };
 
+  const handleNotificationClick = () => {
+    setShowNotifications(!showNotifications);
+  };
+
+  const handleClearNotifications = () => {
+    setNotifications(0);
+    setShowNotifications(false);
+  };
+
+  const handleNotificationItemClick = (notificationId) => {
+    // In a real app, this would mark the notification as read
+    console.log('Notification clicked:', notificationId);
+  };
+
+  // Close notifications dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (notificationsRef.current && !notificationsRef.current.contains(event.target)) {
+        setShowNotifications(false);
+      }
+    };
+
+    if (showNotifications) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showNotifications]);
+
+  // Handle escape key to close notifications
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setShowNotifications(false);
+      }
+    };
+
+    if (showNotifications) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [showNotifications]);
   return (
     <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
       <div className="px-6 py-4">
@@ -75,13 +152,20 @@ const navigationItems = [
               >
                 {roleOptions.map((role) => (
                   <option key={role} value={role}>{role}</option>
-                ))}
+))}
               </select>
             </div>
 
             {/* Notifications */}
-            <div className="relative">
-              <Button variant="ghost" className="relative">
+            <div className="relative" ref={notificationsRef}>
+              <Button 
+                variant="ghost"
+                className="relative"
+                onClick={handleNotificationClick}
+                aria-label="Open notifications"
+                aria-expanded={showNotifications}
+                aria-haspopup="true"
+              >
                 <ApperIcon name="Bell" className="w-5 h-5" />
                 {notifications > 0 && (
                   <Badge 
@@ -93,6 +177,61 @@ const navigationItems = [
                   </Badge>
                 )}
               </Button>
+              
+              {/* Notifications Dropdown */}
+              {showNotifications && (
+                <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                  <div className="p-4 border-b border-gray-200">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-semibold text-gray-900">Notifications</h3>
+                      {notifications > 0 && (
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={handleClearNotifications}
+                          className="text-sm text-gray-500 hover:text-gray-700"
+                        >
+                          Clear all
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="max-h-96 overflow-y-auto">
+                    {notifications > 0 ? (
+                      <div className="divide-y divide-gray-100">
+                        {mockNotifications.map((notification) => (
+                          <div 
+                            key={notification.id}
+                            className="p-4 hover:bg-gray-50 cursor-pointer transition-colors"
+                            onClick={() => handleNotificationItemClick(notification.id)}
+                          >
+                            <div className="flex items-start gap-3">
+                              <div className={cn(
+                                "w-2 h-2 rounded-full mt-2 flex-shrink-0",
+                                notification.type === 'success' && "bg-success",
+                                notification.type === 'warning' && "bg-warning",
+                                notification.type === 'error' && "bg-error",
+                                notification.type === 'info' && "bg-info"
+                              )} />
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                                <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
+                                <p className="text-xs text-gray-400 mt-2">{notification.time}</p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="p-8 text-center">
+                        <ApperIcon name="Bell" className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                        <p className="text-gray-500">No notifications</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* User Profile */}
