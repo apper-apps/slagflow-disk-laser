@@ -207,10 +207,10 @@ return (
                                 className="absolute -top-1 -right-1 min-w-[20px] h-5 flex items-center justify-center">
                                 {notifications}
                             </Badge>}
-                        </Button>
+</Button>
                         {/* Notifications Dropdown */}
                         {showNotifications && <div
-                            className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                            className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-[9998]">
                             <div className="p-4 border-b border-gray-200">
                                 <div className="flex items-center justify-between">
                                     <h3 className="font-semibold text-gray-900">Notifications</h3>
