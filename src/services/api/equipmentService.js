@@ -118,11 +118,35 @@ class EquipmentService {
       'Screener': 3
     };
     return durations[equipmentType] || 3;
+return durations[equipmentType] || 3;
+  }
+
+  async getEquipmentWithSensorData() {
+    await this.delay(300);
+    return this.equipment.map(equipment => ({
+      ...equipment,
+      coordinates: this.getEquipmentCoordinates(equipment.Id),
+      dustLevel: Math.floor(Math.random() * 100) + 1, // Simulated dust sensor (1-100 μg/m³)
+      vibration: Math.floor(Math.random() * 50) + 10, // Simulated vibration (10-60 Hz)
+      pressure: Math.floor(Math.random() * 30) + 50, // Simulated pressure (50-80 PSI)
+      lastSensorUpdate: new Date().toISOString()
+    }));
+  }
+
+  getEquipmentCoordinates(equipmentId) {
+    // Simulated coordinates for plant layout
+    const coordinates = {
+      1: [40.7128, -74.0060], // Crusher #1
+      2: [40.7130, -74.0058], // Crusher #2  
+      3: [40.7125, -74.0055], // Screen #1
+      4: [40.7132, -74.0062], // Conveyor #1
+      5: [40.7127, -74.0057]  // Grinder #1
+    };
+    return coordinates[equipmentId] || [40.7128, -74.0060];
   }
 
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
-
 export default new EquipmentService();
