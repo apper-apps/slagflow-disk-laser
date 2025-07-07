@@ -118,6 +118,53 @@ async getChemistryData(limit = 10) {
     
     return results;
   }
+async getProfitData() {
+    await this.delay(350);
+    
+    // Calculate basic profit metrics from load data
+    const processedLoads = this.loads.filter(load => load.status === 'processed');
+    
+    const profitData = processedLoads.map(load => {
+      // Base costs per tonne for different processing stages
+      const crushingCost = 15.0; // per tonne
+      const screeningCost = 12.0; // per tonne
+      const washingCost = 8.0; // per tonne
+      const operationalCost = 25.0; // per tonne
+      
+      const totalProcessingCost = (crushingCost + screeningCost + washingCost + operationalCost) * load.weight;
+      
+      // Revenue calculation based on material grade and chemistry
+      const basePrice = this.calculateBasePriceFromChemistry(load.chemistry);
+      const totalRevenue = basePrice * load.weight;
+      
+      const profit = totalRevenue - totalProcessingCost;
+      const profitPerTonne = profit / load.weight;
+      
+      return {
+        Id: load.Id,
+        loadNumber: load.loadNumber,
+        weight: load.weight,
+        totalRevenue,
+        totalCost: totalProcessingCost,
+        profit,
+        profitPerTonne,
+        date: load.arrivalTime,
+        source: load.source,
+        chemistry: load.chemistry
+      };
+    });
+    
+    return profitData;
+  }
+
+  calculateBasePriceFromChemistry(chemistry) {
+    // Calculate price based on iron content and other factors
+    const ironBonus = Math.max(0, chemistry.iron - 40) * 2.5; // Bonus for high iron
+    const basePrice = 85.0; // Base price per tonne
+    const qualityAdjustment = ironBonus - (chemistry.aluminum > 5 ? 5 : 0); // Penalty for high aluminum
+    
+    return Math.max(75, basePrice + qualityAdjustment);
+  }
 
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

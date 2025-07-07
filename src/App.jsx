@@ -8,7 +8,7 @@ import Inventory from '@/components/pages/Inventory';
 import Reports from '@/components/pages/Reports';
 import Settings from '@/components/pages/Settings';
 import MaintenanceCalendar from '@/components/pages/MaintenanceCalendar';
-
+import ProfitDashboard from '@/components/pages/ProfitDashboard';
 function App() {
   return (
     <Router>
@@ -20,6 +20,7 @@ function App() {
             <Route path="/processing" element={<Processing />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/reports" element={<Reports />} />
+            <Route path="/profit" element={<ProfitDashboard />} />
             <Route path="/maintenance" element={<MaintenanceCalendar />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
