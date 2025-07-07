@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import StatCard from '@/components/molecules/StatCard';
 import Loading from '@/components/ui/Loading';
 import Error from '@/components/ui/Error';
-
+import ChemistryChart from '@/components/organisms/ChemistryChart';
 const KPIGrid = ({ userRole }) => {
   const [kpis, setKpis] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [showChemistry, setShowChemistry] = useState(false);
   useEffect(() => {
     const fetchKPIs = async () => {
       try {
@@ -55,19 +55,27 @@ const KPIGrid = ({ userRole }) => {
   if (loading) return <Loading />;
   if (error) return <Error message={error} onRetry={() => window.location.reload()} />;
 
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {kpis.map((kpi, index) => (
-        <StatCard
-          key={index}
-          title={kpi.title}
-          value={kpi.value}
-          change={kpi.change}
-          changeType={kpi.changeType}
-          icon={kpi.icon}
-          className="hover:shadow-lg transition-shadow"
-        />
-      ))}
+return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {kpis.map((kpi, index) => (
+          <StatCard
+            key={index}
+            title={kpi.title}
+            value={kpi.value}
+            change={kpi.change}
+            changeType={kpi.changeType}
+            icon={kpi.icon}
+            className="hover:shadow-lg transition-shadow"
+          />
+        ))}
+      </div>
+      
+      {userRole === 'Manager' && (
+        <div className="w-full">
+          <ChemistryChart />
+        </div>
+      )}
     </div>
   );
 };

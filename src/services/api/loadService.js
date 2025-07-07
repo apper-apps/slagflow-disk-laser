@@ -55,6 +55,69 @@ class LoadService {
     await this.delay(250);
     return this.loads.filter(l => l.status === status);
   }
+async getChemistryData(limit = 10) {
+    await this.delay(300);
+    const recentLoads = this.loads.slice(-limit);
+    return recentLoads.map(load => ({
+      Id: load.Id,
+      loadNumber: load.loadNumber,
+      source: load.source,
+      chemistry: load.chemistry,
+      status: load.status,
+      arrivalTime: load.arrivalTime
+    }));
+  }
+
+  async getChemistryByDateRange(startDate, endDate) {
+    await this.delay(350);
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    
+    return this.loads.filter(load => {
+      const loadDate = new Date(load.arrivalTime);
+      return loadDate >= start && loadDate <= end;
+    }).map(load => ({
+      Id: load.Id,
+      loadNumber: load.loadNumber,
+      source: load.source,
+      chemistry: load.chemistry,
+      status: load.status,
+      arrivalTime: load.arrivalTime
+    }));
+  }
+
+  getChemistryTolerance() {
+    return {
+      iron: { min: 40, max: 50, target: 45 },
+      calcium: { min: 28, max: 36, target: 32 },
+      silicon: { min: 12, max: 18, target: 15 },
+      aluminum: { min: 3, max: 6, target: 4.5 },
+      magnesium: { min: 1.5, max: 3.5, target: 2.5 }
+    };
+  }
+
+  validateChemistry(chemistry) {
+    const tolerance = this.getChemistryTolerance();
+    const results = {};
+    
+    for (const [element, value] of Object.entries(chemistry)) {
+      const range = tolerance[element];
+      if (range) {
+        const status = value >= range.min && value <= range.max ? 'within' : 
+                      value < range.min ? 'low' : 'high';
+        const deviation = Math.abs(value - range.target);
+        results[element] = {
+          value,
+          status,
+          deviation,
+          target: range.target,
+          range: range
+        };
+      }
+    }
+    
+    return results;
+  }
 
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
