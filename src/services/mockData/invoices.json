@@ -1,0 +1,80 @@
+[
+  {
+    "Id": 1,
+    "invoiceNumber": "INV-2024-001",
+    "customer": "Construction Corp Ltd",
+    "customerAddress": "123 Builder St, Industrial City",
+    "date": "2024-01-25T00:00:00Z",
+    "dueDate": "2024-02-25T00:00:00Z",
+    "items": [
+      {
+        "material": "Coarse Aggregate Grade A",
+        "quantity": 50.0,
+        "unitPrice": 45.50,
+        "total": 2275.00
+      },
+      {
+        "material": "Fine Aggregate Grade A",
+        "quantity": 25.0,
+        "unitPrice": 42.75,
+        "total": 1068.75
+      }
+    ],
+    "subtotal": 3343.75,
+    "tax": 334.38,
+    "total": 3678.13,
+    "status": "paid",
+    "paymentMethod": "Bank Transfer",
+    "notes": "Delivered to Site A on 2024-01-24"
+  },
+  {
+    "Id": 2,
+    "invoiceNumber": "INV-2024-002",
+    "customer": "Metro Infrastructure",
+    "customerAddress": "456 Development Ave, Metro City",
+    "date": "2024-01-24T00:00:00Z",
+    "dueDate": "2024-02-24T00:00:00Z",
+    "items": [
+      {
+        "material": "Recycled Aggregate Grade A",
+        "quantity": 75.0,
+        "unitPrice": 28.90,
+        "total": 2167.50
+      }
+    ],
+    "subtotal": 2167.50,
+    "tax": 216.75,
+    "total": 2384.25,
+    "status": "pending",
+    "paymentMethod": "Credit",
+    "notes": "Rush order - priority delivery"
+  },
+  {
+    "Id": 3,
+    "invoiceNumber": "INV-2024-003",
+    "customer": "Urban Builders Inc",
+    "customerAddress": "789 Project Blvd, Urban District",
+    "date": "2024-01-23T00:00:00Z",
+    "dueDate": "2024-02-23T00:00:00Z",
+    "items": [
+      {
+        "material": "Coarse Aggregate Grade B",
+        "quantity": 100.0,
+        "unitPrice": 38.25,
+        "total": 3825.00
+      },
+      {
+        "material": "Fine Aggregate Grade B",
+        "quantity": 50.0,
+        "unitPrice": 35.50,
+        "total": 1775.00
+      }
+    ],
+    "subtotal": 5600.00,
+    "tax": 560.00,
+    "total": 6160.00,
+    "status": "overdue",
+    "paymentMethod": "Check",
+    "notes": "Regular monthly order"
+  }
+]

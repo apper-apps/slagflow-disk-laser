@@ -1,0 +1,87 @@
+[
+  {
+    "Id": 1,
+    "weight": 25.5,
+    "source": "Steel Mill A",
+    "chemistry": {
+      "iron": 45.2,
+      "calcium": 32.1,
+      "silicon": 15.8,
+      "aluminum": 4.2,
+      "magnesium": 2.7
+    },
+    "arrivalTime": "2024-01-25T08:30:00Z",
+    "status": "processed",
+    "driver": "John Doe",
+    "truckNumber": "TR-001",
+    "loadNumber": "LD-2024-001"
+  },
+  {
+    "Id": 2,
+    "weight": 32.8,
+    "source": "Steel Mill B",
+    "chemistry": {
+      "iron": 42.8,
+      "calcium": 34.5,
+      "silicon": 16.2,
+      "aluminum": 3.9,
+      "magnesium": 2.6
+    },
+    "arrivalTime": "2024-01-25T10:15:00Z",
+    "status": "processing",
+    "driver": "Mike Johnson",
+    "truckNumber": "TR-002",
+    "loadNumber": "LD-2024-002"
+  },
+  {
+    "Id": 3,
+    "weight": 28.3,
+    "source": "Steel Mill C",
+    "chemistry": {
+      "iron": 48.1,
+      "calcium": 30.2,
+      "silicon": 14.9,
+      "aluminum": 4.8,
+      "magnesium": 2.0
+    },
+    "arrivalTime": "2024-01-25T11:45:00Z",
+    "status": "pending",
+    "driver": "Sarah Wilson",
+    "truckNumber": "TR-003",
+    "loadNumber": "LD-2024-003"
+  },
+  {
+    "Id": 4,
+    "weight": 31.2,
+    "source": "Steel Mill A",
+    "chemistry": {
+      "iron": 46.5,
+      "calcium": 31.8,
+      "silicon": 15.3,
+      "aluminum": 4.1,
+      "magnesium": 2.3
+    },
+    "arrivalTime": "2024-01-25T13:20:00Z",
+    "status": "pending",
+    "driver": "Tom Brown",
+    "truckNumber": "TR-004",
+    "loadNumber": "LD-2024-004"
+  },
+  {
+    "Id": 5,
+    "weight": 27.9,
+    "source": "Steel Mill B",
+    "chemistry": {
+      "iron": 44.3,
+      "calcium": 33.1,
+      "silicon": 16.8,
+      "aluminum": 3.7,
+      "magnesium": 2.1
+    },
+    "arrivalTime": "2024-01-25T14:55:00Z",
+    "status": "pending",
+    "driver": "Lisa Davis",
+    "truckNumber": "TR-005",
+    "loadNumber": "LD-2024-005"
+  }
+]

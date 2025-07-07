@@ -1,0 +1,74 @@
+[
+  {
+    "Id": 1,
+    "binId": "BIN-A01",
+    "material": "Coarse Aggregate",
+    "quantity": 245.5,
+    "capacity": 300,
+    "quality": "Grade A",
+    "lastUpdated": "2024-01-25T14:30:00Z",
+    "location": "Storage Area A",
+    "pricePerTonne": 45.50,
+    "supplierBatch": "SA-2024-001"
+  },
+  {
+    "Id": 2,
+    "binId": "BIN-A02",
+    "material": "Fine Aggregate",
+    "quantity": 189.2,
+    "capacity": 250,
+    "quality": "Grade A",
+    "lastUpdated": "2024-01-25T15:15:00Z",
+    "location": "Storage Area A",
+    "pricePerTonne": 42.75,
+    "supplierBatch": "SA-2024-002"
+  },
+  {
+    "Id": 3,
+    "binId": "BIN-B01",
+    "material": "Coarse Aggregate",
+    "quantity": 156.8,
+    "capacity": 300,
+    "quality": "Grade B",
+    "lastUpdated": "2024-01-25T13:45:00Z",
+    "location": "Storage Area B",
+    "pricePerTonne": 38.25,
+    "supplierBatch": "SB-2024-001"
+  },
+  {
+    "Id": 4,
+    "binId": "BIN-B02",
+    "material": "Fine Aggregate",
+    "quantity": 98.4,
+    "capacity": 250,
+    "quality": "Grade B",
+    "lastUpdated": "2024-01-25T12:20:00Z",
+    "location": "Storage Area B",
+    "pricePerTonne": 35.50,
+    "supplierBatch": "SB-2024-002"
+  },
+  {
+    "Id": 5,
+    "binId": "BIN-C01",
+    "material": "Raw Slag",
+    "quantity": 412.7,
+    "capacity": 500,
+    "quality": "Unprocessed",
+    "lastUpdated": "2024-01-25T16:10:00Z",
+    "location": "Raw Material Area",
+    "pricePerTonne": 15.00,
+    "supplierBatch": "RS-2024-001"
+  },
+  {
+    "Id": 6,
+    "binId": "BIN-C02",
+    "material": "Recycled Aggregate",
+    "quantity": 324.1,
+    "capacity": 400,
+    "quality": "Grade A",
+    "lastUpdated": "2024-01-25T11:30:00Z",
+    "location": "Recycling Area",
+    "pricePerTonne": 28.90,
+    "supplierBatch": "RA-2024-001"
+  }
+]

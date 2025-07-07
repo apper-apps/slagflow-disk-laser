@@ -1,0 +1,72 @@
+[
+  {
+    "Id": 1,
+    "name": "Crusher #1",
+    "type": "Crusher",
+    "status": "online",
+    "temperature": 78,
+    "maxTemp": 100,
+    "efficiency": 94,
+    "lastMaintenance": "2024-01-15T00:00:00Z",
+    "location": "Processing Bay A",
+    "manufacturer": "CrushTech Industries",
+    "model": "CT-5000",
+    "serialNumber": "CT5000-2023-001"
+  },
+  {
+    "Id": 2,
+    "name": "Crusher #2",
+    "type": "Crusher",
+    "status": "warning",
+    "temperature": 95,
+    "maxTemp": 100,
+    "efficiency": 87,
+    "lastMaintenance": "2024-01-10T00:00:00Z",
+    "location": "Processing Bay B",
+    "manufacturer": "CrushTech Industries",
+    "model": "CT-5000",
+    "serialNumber": "CT5000-2023-002"
+  },
+  {
+    "Id": 3,
+    "name": "Screen #1",
+    "type": "Screen",
+    "status": "online",
+    "temperature": 65,
+    "maxTemp": 80,
+    "efficiency": 92,
+    "lastMaintenance": "2024-01-20T00:00:00Z",
+    "location": "Screening Area",
+    "manufacturer": "ScreenMaster",
+    "model": "SM-300",
+    "serialNumber": "SM300-2023-001"
+  },
+  {
+    "Id": 4,
+    "name": "Conveyor #1",
+    "type": "Conveyor",
+    "status": "error",
+    "temperature": 45,
+    "maxTemp": 60,
+    "efficiency": 0,
+    "lastMaintenance": "2024-01-05T00:00:00Z",
+    "location": "Transport Line A",
+    "manufacturer": "ConveyPro",
+    "model": "CP-1500",
+    "serialNumber": "CP1500-2023-001"
+  },
+  {
+    "Id": 5,
+    "name": "Grinder #1",
+    "type": "Grinder",
+    "status": "online",
+    "temperature": 82,
+    "maxTemp": 110,
+    "efficiency": 96,
+    "lastMaintenance": "2024-01-18T00:00:00Z",
+    "location": "Fine Processing",
+    "manufacturer": "GrindMax",
+    "model": "GM-800",
+    "serialNumber": "GM800-2023-001"
+  }
+]
