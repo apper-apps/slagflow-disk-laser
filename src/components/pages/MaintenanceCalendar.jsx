@@ -216,7 +216,7 @@ const MaintenanceCalendar = () => {
     setSelectedDate(null);
   };
 
-  const getFilteredTasks = () => {
+const getFilteredTasks = () => {
     return tasks.filter(task => {
       const matchesPersonnel = filterPersonnel === 'all' || task.assignedTo === parseInt(filterPersonnel);
       const matchesStatus = filterStatus === 'all' || task.status === filterStatus;
