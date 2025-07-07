@@ -105,56 +105,56 @@ const Header = () => {
       document.removeEventListener('keydown', handleEscape);
     };
   }, [showNotifications]);
-  return (
+return (
     <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
-      <div className="px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo and Brand */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <ApperIcon name="Factory" className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900 font-display">SlagFlow Pro</h1>
-                <p className="text-xs text-gray-500">Industrial ERP System</p>
+      <div className="w-full max-w-full overflow-hidden">
+        <div className="px-3 sm:px-6 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-2 sm:gap-4">
+            {/* Logo and Brand */}
+            <div className="flex items-center min-w-0 flex-shrink-0">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-lg flex items-center justify-center">
+                  <ApperIcon name="Factory" className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                </div>
+                <div className="hidden sm:block">
+                  <h1 className="text-lg sm:text-xl font-bold text-gray-900 font-display">SlagFlow Pro</h1>
+                  <p className="text-xs text-gray-500">Industrial ERP System</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
-            {navigationItems.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={({ isActive }) => cn(
-                  'flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
-                  isActive 
-                    ? 'bg-primary text-white' 
-                    : 'text-gray-600 hover:text-primary hover:bg-primary/10'
-                )}
-              >
-                <ApperIcon name={item.icon} className="w-4 h-4" />
-                <span>{item.label}</span>
-              </NavLink>
-            ))}
-          </nav>
-
-          {/* User Actions */}
-          <div className="flex items-center space-x-4">
-            {/* Role Switcher */}
-            <div className="relative">
-              <select 
-                value={userRole}
-                onChange={(e) => handleRoleChange(e.target.value)}
-                className="bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20"
-              >
-                {roleOptions.map((role) => (
-                  <option key={role} value={role}>{role}</option>
-))}
-              </select>
-            </div>
+{/* Navigation */}
+            <nav className="hidden lg:flex items-center space-x-2 xl:space-x-4">
+              {navigationItems.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) => cn(
+                    'flex items-center space-x-1.5 xl:space-x-2 px-2 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-medium transition-colors whitespace-nowrap',
+                    isActive 
+                      ? 'bg-primary text-white' 
+                      : 'text-gray-600 hover:text-primary hover:bg-primary/10'
+                  )}
+                >
+                  <ApperIcon name={item.icon} className="w-3.5 h-3.5 xl:w-4 xl:h-4" />
+                  <span className="hidden xl:inline">{item.label}</span>
+                </NavLink>
+              ))}
+            </nav>
+{/* User Actions */}
+            <div className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
+              {/* Role Switcher */}
+              <div className="relative hidden md:block">
+                <select 
+                  value={userRole}
+                  onChange={(e) => handleRoleChange(e.target.value)}
+                  className="bg-gray-50 border border-gray-300 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                >
+                  {roleOptions.map((role) => (
+                    <option key={role} value={role}>{role}</option>
+                  ))}
+                </select>
+              </div>
 
             {/* Notifications */}
             <div className="relative" ref={notificationsRef}>
@@ -234,17 +234,18 @@ const Header = () => {
               )}
             </div>
 
-            {/* User Profile */}
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
-                <ApperIcon name="User" className="w-4 h-4 text-white" />
-              </div>
-              <div className="hidden sm:block">
-                <p className="text-sm font-medium text-gray-900">John Smith</p>
-                <p className="text-xs text-gray-500">{userRole}</p>
+{/* User Profile */}
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 bg-secondary rounded-full flex items-center justify-center">
+                  <ApperIcon name="User" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                </div>
+                <div className="hidden lg:block">
+                  <p className="text-sm font-medium text-gray-900">John Smith</p>
+                  <p className="text-xs text-gray-500">{userRole}</p>
+                </div>
               </div>
             </div>
-          </div>
+</div>
         </div>
       </div>
     </header>
