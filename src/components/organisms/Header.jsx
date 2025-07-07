@@ -10,12 +10,13 @@ const Header = () => {
   const [notifications, setNotifications] = useState(3);
   const navigate = useNavigate();
 
-  const navigationItems = [
+const navigationItems = [
     { path: '/', label: 'Dashboard', icon: 'LayoutDashboard' },
     { path: '/weighbridge', label: 'Weighbridge', icon: 'Scale' },
     { path: '/processing', label: 'Processing', icon: 'Cog' },
     { path: '/inventory', label: 'Inventory', icon: 'Package' },
     { path: '/reports', label: 'Reports', icon: 'FileText' },
+    { path: '/maintenance', label: 'Maintenance', icon: 'Calendar' },
     { path: '/settings', label: 'Settings', icon: 'Settings' }
   ];
 

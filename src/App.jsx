@@ -7,18 +7,20 @@ import Processing from '@/components/pages/Processing';
 import Inventory from '@/components/pages/Inventory';
 import Reports from '@/components/pages/Reports';
 import Settings from '@/components/pages/Settings';
+import MaintenanceCalendar from '@/components/pages/MaintenanceCalendar';
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen bg-background">
         <Layout>
-          <Routes>
+<Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/weighbridge" element={<Weighbridge />} />
             <Route path="/processing" element={<Processing />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/reports" element={<Reports />} />
+            <Route path="/maintenance" element={<MaintenanceCalendar />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </Layout>
