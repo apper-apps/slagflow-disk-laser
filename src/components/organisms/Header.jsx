@@ -130,10 +130,10 @@ return (
                   key={item.path}
                   to={item.path}
                   className={({ isActive }) => cn(
-                    'flex items-center space-x-1.5 xl:space-x-2 px-2 xl:px-3 py-2 rounded-lg text-xs xl:text-xs font-medium transition-colors whitespace-nowrap',
+                    'flex items-center space-x-1.5 xl:space-x-2 px-2 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-medium transition-colors whitespace-nowrap',
                     isActive 
-                      ? 'bg-primary text-white'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      ? 'bg-primary text-white' 
+                      : 'text-gray-600 hover:text-primary hover:bg-primary/10'
                   )}
                 >
                   <ApperIcon name={item.icon} className="w-3.5 h-3.5 xl:w-4 xl:h-4" />
@@ -181,15 +181,15 @@ return (
               {/* Notifications Dropdown */}
               {showNotifications && (
                 <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-<div className="p-4 border-b border-gray-200">
+                  <div className="p-4 border-b border-gray-200">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-medium text-gray-900">Notifications</h3>
+                      <h3 className="font-semibold text-gray-900">Notifications</h3>
                       {notifications > 0 && (
                         <Button 
                           variant="ghost" 
                           size="sm"
-onClick={handleClearNotifications}
-                          className="text-xs text-gray-500 hover:text-gray-700"
+                          onClick={handleClearNotifications}
+                          className="text-sm text-gray-500 hover:text-gray-700"
                         >
                           Clear all
                         </Button>
@@ -213,11 +213,11 @@ onClick={handleClearNotifications}
                                 notification.type === 'warning' && "bg-warning",
                                 notification.type === 'error' && "bg-error",
                                 notification.type === 'info' && "bg-info"
-)} />
+                              )} />
                               <div className="flex-1 min-w-0">
-                                <p className="text-xs font-medium text-gray-900">{notification.title}</p>
-                                <p className="text-xs text-gray-600 mt-1">{notification.message}</p>
-                                <p className="text-[10px] text-gray-400 mt-2">{notification.time}</p>
+                                <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                                <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
+                                <p className="text-xs text-gray-400 mt-2">{notification.time}</p>
                               </div>
                             </div>
                           </div>
@@ -238,10 +238,10 @@ onClick={handleClearNotifications}
               <div className="flex items-center space-x-2 sm:space-x-3">
                 <div className="w-7 h-7 sm:w-8 sm:h-8 bg-secondary rounded-full flex items-center justify-center">
                   <ApperIcon name="User" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
-</div>
+                </div>
                 <div className="hidden lg:block">
-                  <p className="text-xs font-medium text-gray-900">John Smith</p>
-                  <p className="text-[10px] text-gray-500">{userRole}</p>
+                  <p className="text-sm font-medium text-gray-900">John Smith</p>
+                  <p className="text-xs text-gray-500">{userRole}</p>
                 </div>
               </div>
             </div>
